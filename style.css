@@ -28,14 +28,6 @@ header {
   height: auto;
 }
 
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 1.5rem;
-}
-
 nav a {
   text-decoration: none;
   color: #fff;
@@ -107,27 +99,10 @@ main {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 1.5rem;
+  justify-items: center; /* center items for button below */
 }
 
-.results a {
-  display: block;
-  text-decoration: none;
-}
-
-.results img {
-  width: 100%;
-  border-radius: 12px;
-  border: 3px solid #ffb866;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer; /* 👈 makes it feel clickable */
-}
-
-.results img:hover {
-  transform: scale(1.08); /* Slightly bigger zoom */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); /* Subtle shadow */
-}
-
-/* Container for each GIF + button */
+/* GIF container */
 .gif-container {
   display: flex;
   flex-direction: column;
@@ -135,15 +110,39 @@ main {
   gap: 0.5rem;
 }
 
+/* GIF image styling */
+.gif-container img {
+  width: 100%;
+  max-width: 180px;
+  border-radius: 12px;
+  border: 3px solid #ffb866;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.gif-container img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Copy button below GIF */
 .copy-btn {
   background: #ffb866;
   border: none;
   border-radius: 6px;
-  padding: 0.3rem 0.7rem;
+  padding: 0.4rem 0.8rem;
   font-size: 0.85rem;
   color: #3a1f0f;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.1s ease;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.gif-container:hover .copy-btn {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
 .copy-btn:hover {

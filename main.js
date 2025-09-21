@@ -1,7 +1,7 @@
 const app = document.getElementById("app");
 const links = document.querySelectorAll(".nav-link");
 const API_KEY = "QAmudxZkNmufoXBfo5xHp3JLpQrBFt5Z"; 
-const LIMIT = 18; // number of GIFs per search
+const LIMIT = 18;
 
 function renderHome() {
   app.innerHTML = `
@@ -17,13 +17,11 @@ function renderHome() {
   const btn = document.getElementById("searchBtn");
   const input = document.getElementById("searchInput");
 
-  // Click search
   btn.addEventListener("click", searchGifs);
 
-  // Enter key search + button animation
   input.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
-      e.preventDefault(); // Avoid accidental form submit
+      e.preventDefault();
       btn.classList.add("active");
       searchGifs();
       setTimeout(() => btn.classList.remove("active"), 150);
@@ -52,7 +50,7 @@ function renderDocs() {
   `;
 }
 
-// Real Giphy Search
+// Giphy Search
 async function searchGifs() {
   const query = document.getElementById("searchInput").value.trim();
   const results = document.getElementById("results");
@@ -68,9 +66,7 @@ async function searchGifs() {
 
   try {
     const response = await fetch(
-      `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${encodeURIComponent(
-        query
-      )}&limit=${LIMIT}&rating=g`
+      `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${encodeURIComponent(query)}&limit=${LIMIT}&rating=g`
     );
     const data = await response.json();
 
@@ -81,11 +77,9 @@ async function searchGifs() {
 
     results.innerHTML = "";
     data.data.forEach((gif) => {
-      // Wrapper for GIF + button
       const container = document.createElement("div");
       container.classList.add("gif-container");
 
-      // Clickable GIF link
       const link = document.createElement("a");
       link.href = gif.url;
       link.target = "_blank";
@@ -98,7 +92,6 @@ async function searchGifs() {
       link.appendChild(img);
       container.appendChild(link);
 
-      // Copy Link Button
       const copyBtn = document.createElement("button");
       copyBtn.classList.add("copy-btn");
       copyBtn.textContent = "Copy Link";
@@ -108,8 +101,7 @@ async function searchGifs() {
           await navigator.clipboard.writeText(gif.url);
           copyBtn.textContent = "Copied! ✅";
           setTimeout(() => (copyBtn.textContent = "Copy Link"), 2000);
-        } catch (err) {
-          console.error("Failed to copy:", err);
+        } catch {
           copyBtn.textContent = "Error ❌";
           setTimeout(() => (copyBtn.textContent = "Copy Link"), 2000);
         }

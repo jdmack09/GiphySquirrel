@@ -1,7 +1,7 @@
 const app = document.getElementById("app");
 const links = document.querySelectorAll(".nav-link");
 const API_KEY = "QAmudxZkNmufoXBfo5xHp3JLpQrBFt5Z"; 
-const LIMIT = 27; // number of GIFs per search
+const LIMIT = 18; // number of GIFs per search
 
 function renderHome() {
   app.innerHTML = `
@@ -17,12 +17,16 @@ function renderHome() {
   const btn = document.getElementById("searchBtn");
   const input = document.getElementById("searchInput");
 
+  // Click search
   btn.addEventListener("click", searchGifs);
 
-  // Trigger search on Enter key
+  // Enter key search + button animation
   input.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
+      e.preventDefault(); // Avoid accidental form submit
+      btn.classList.add("active");
       searchGifs();
+      setTimeout(() => btn.classList.remove("active"), 150);
     }
   });
 }
@@ -52,6 +56,7 @@ function renderDocs() {
 async function searchGifs() {
   const query = document.getElementById("searchInput").value.trim();
   const results = document.getElementById("results");
+  const btn = document.getElementById("searchBtn");
 
   if (!query) {
     results.innerHTML = "<p>Please enter a search term 🐿️</p>";
@@ -59,6 +64,7 @@ async function searchGifs() {
   }
 
   results.innerHTML = "<p>Loading...</p>";
+  btn?.classList.add("loading");
 
   try {
     const response = await fetch(
@@ -83,6 +89,8 @@ async function searchGifs() {
   } catch (error) {
     console.error("Error fetching from Giphy API:", error);
     results.innerHTML = "<p>Oops, something went wrong! 🐿️</p>";
+  } finally {
+    btn?.classList.remove("loading");
   }
 }
 
@@ -90,7 +98,7 @@ async function searchGifs() {
 function handleRoute() {
   const hash = window.location.hash || "#home";
   links.forEach(link => link.classList.remove("active"));
-  document.querySelector(`a[href=\"${hash}\"]`)?.classList.add("active");
+  document.querySelector(`a[href="${hash}"]`)?.classList.add("active");
 
   if (hash === "#home") renderHome();
   if (hash === "#about") renderAbout();

@@ -1,7 +1,7 @@
 const app = document.getElementById("app");
 const links = document.querySelectorAll(".nav-link");
 const API_KEY = "QAmudxZkNmufoXBfo5xHp3JLpQrBFt5Z"; 
-const LIMIT = 12; // number of GIFs per search
+const LIMIT = 27; // number of GIFs per search
 
 function renderHome() {
   app.innerHTML = `

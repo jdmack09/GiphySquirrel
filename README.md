@@ -13,7 +13,6 @@ A single-page app that allows users to search Giphy and view results in a respon
 
 ## Files
 - `index.html` — main markup
-- `style.scss` — SASS source (compile to style.css)
 - `style.css` — compiled CSS
 - `main.js` — JavaScript to call Giphy API and render results
 

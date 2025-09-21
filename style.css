@@ -109,15 +109,22 @@ main {
   gap: 1.5rem;
 }
 
+.results a {
+  display: block;
+  text-decoration: none;
+}
+
 .results img {
   width: 100%;
   border-radius: 12px;
   border: 3px solid #ffb866;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer; /* 👈 makes it feel clickable */
 }
 
 .results img:hover {
-  transform: scale(1.05);
+  transform: scale(1.08); /* Slightly bigger zoom */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); /* Subtle shadow */
 }
 
 /* About & Docs pages */

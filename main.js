@@ -15,7 +15,16 @@ function renderHome() {
   `;
 
   const btn = document.getElementById("searchBtn");
+  const input = document.getElementById("searchInput");
+
   btn.addEventListener("click", searchGifs);
+
+  // Trigger search on Enter key
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      searchGifs();
+    }
+  });
 }
 
 function renderAbout() {

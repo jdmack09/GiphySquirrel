@@ -127,6 +127,33 @@ main {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); /* Subtle shadow */
 }
 
+/* Container for each GIF + button */
+.gif-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.copy-btn {
+  background: #ffb866;
+  border: none;
+  border-radius: 6px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.85rem;
+  color: #3a1f0f;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.copy-btn:hover {
+  background: #ffa94d;
+}
+
+.copy-btn:active {
+  transform: scale(0.95);
+}
+
 /* About & Docs pages */
 .section {
   background: #fff4e6;

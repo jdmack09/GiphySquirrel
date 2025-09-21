@@ -81,10 +81,14 @@ async function searchGifs() {
 
     results.innerHTML = "";
     data.data.forEach((gif) => {
-      // Create a clickable link around the image
+      // Wrapper for GIF + button
+      const container = document.createElement("div");
+      container.classList.add("gif-container");
+
+      // Clickable GIF link
       const link = document.createElement("a");
-      link.href = gif.url; // Giphy's own page for this GIF
-      link.target = "_blank"; // Open in new tab
+      link.href = gif.url;
+      link.target = "_blank";
       link.rel = "noopener noreferrer";
 
       const img = document.createElement("img");
@@ -92,7 +96,27 @@ async function searchGifs() {
       img.alt = gif.title || query;
 
       link.appendChild(img);
-      results.appendChild(link);
+      container.appendChild(link);
+
+      // Copy Link Button
+      const copyBtn = document.createElement("button");
+      copyBtn.classList.add("copy-btn");
+      copyBtn.textContent = "Copy Link";
+
+      copyBtn.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(gif.url);
+          copyBtn.textContent = "Copied! ✅";
+          setTimeout(() => (copyBtn.textContent = "Copy Link"), 2000);
+        } catch (err) {
+          console.error("Failed to copy:", err);
+          copyBtn.textContent = "Error ❌";
+          setTimeout(() => (copyBtn.textContent = "Copy Link"), 2000);
+        }
+      });
+
+      container.appendChild(copyBtn);
+      results.appendChild(container);
     });
   } catch (error) {
     console.error("Error fetching from Giphy API:", error);

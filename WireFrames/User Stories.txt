@@ -1,0 +1,5 @@
+1. As a casual user, I want to type a search term and submit it, so that I can see matching GIFs from Giphy.
+
+2. As a user, I want the returned GIFs to appear in a responsive grid, so that I can browse results comfortably on desktop and phone.
+
+3. As a user, I want to click a GIF to open a larger view or copy its URL, so that I can share or preview the GIF.

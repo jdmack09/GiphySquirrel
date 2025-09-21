@@ -20,7 +20,7 @@ A single-page app that allows users to search Giphy and view results in a respon
 - HTML5
 - SASS (style.scss)
 - Vanilla JavaScript (fetch API)
-- Google Fonts (Fraunces or chosen font)
+- Google Fonts (Fraunces)
 
 ## Ideas for future improvement
 1. Add infinite scroll and smarter caching of queries.

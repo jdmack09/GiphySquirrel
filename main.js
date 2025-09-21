@@ -81,10 +81,18 @@ async function searchGifs() {
 
     results.innerHTML = "";
     data.data.forEach((gif) => {
+      // Create a clickable link around the image
+      const link = document.createElement("a");
+      link.href = gif.url; // Giphy's own page for this GIF
+      link.target = "_blank"; // Open in new tab
+      link.rel = "noopener noreferrer";
+
       const img = document.createElement("img");
       img.src = gif.images.fixed_height.url;
       img.alt = gif.title || query;
-      results.appendChild(img);
+
+      link.appendChild(img);
+      results.appendChild(link);
     });
   } catch (error) {
     console.error("Error fetching from Giphy API:", error);
